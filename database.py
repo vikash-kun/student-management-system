@@ -15,13 +15,15 @@ CREATE TABLE IF NOT EXISTS students(
 connection.commit()
 connection.close()
 
-def insert_student(name,age,course):
-    connection= sqlite3.connect("student.db")
+
+def insert_student(name, age, course):
+    connection = sqlite3.connect("student.db")
     cursor = connection.cursor()
+
     cursor.execute(
-    "INSERT INTO students (name, age, course) VALUES (?, ?, ?)",
-    (name, age, course)
-)
+        "INSERT INTO students (name, age, course) VALUES (?, ?, ?)",
+        (name, age, course)
+    )
 
     connection.commit()
     connection.close()
@@ -29,10 +31,47 @@ def insert_student(name,age,course):
 def view_students():
     connection = sqlite3.connect("student.db")
     cursor = connection.cursor()
+
     cursor.execute("SELECT * FROM students")
+    students = cursor.fetchall()
+
+    if students:
+        for student in students:
+            student_id, name, age, course = student
+
+            print(f"ID     : {student_id}")
+            print(f"Name   : {name}")
+            print(f"Age    : {age}")
+            print(f"Course : {course}")
+            print("-" * 30)
+    else:
+        print("No students found.")
+
+    connection.close()
+
+
+def search_student(name):
+    connection = sqlite3.connect("student.db")
+    cursor = connection.cursor()
+
+    cursor.execute(
+        "SELECT * FROM students WHERE name = ?",
+        (name,)
+    )
 
     students = cursor.fetchall()
 
-    for student in students:
-     print(student)
+    if students:
+        for student in students:
+            student_id, name, age, course = student
+
+            print("\nStudent Found")
+            print(f"ID     : {student_id}")
+            print(f"Name   : {name}")
+            print(f"Age    : {age}")
+            print(f"Course : {course}")
+            print("-" * 30)
+    else:
+        print("Student not found.")
+
     connection.close()

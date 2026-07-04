@@ -1,15 +1,23 @@
-from database import insert_student,view_students
+from database import insert_student, view_students, search_student
+
+
 def add_student():
-    name = input("Enter your name :")
-    age = int(input("Enter your age :"))
-    course = input("Enter your course :")
-    
+    name = input("Enter your name: ")
+    age = int(input("Enter your age: "))
+    course = input("Enter your course: ")
+
     insert_student(name, age, course)
 
     print("\nStudent Details")
-    print(f"Name: {name}")
-    print(f"Age: {age}")
-    print(f"Course: {course}")
+    print(f"Name   : {name}")
+    print(f"Age    : {age}")
+    print(f"Course : {course}")
+
+
 add_student()
+
 print("\n===== Students =====")
 view_students()
+
+name = input("\nEnter student name to search: ")
+search_student(name)
