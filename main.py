@@ -13,11 +13,26 @@ def add_student():
     print(f"Age    : {age}")
     print(f"Course : {course}")
 
+def menu():
+    print("========== Student Management System ==========")
+    print("1. Add Student")
+    print("2. View Students")
+    print("3. Search Student")
+    print("4. Exit")
 
-add_student()
+while True:
+    menu()
+    choice = input("Enter your choice: ")
 
-print("\n===== Students =====")
-view_students()
-
-name = input("\nEnter student name to search: ")
-search_student(name)
+    if choice == "1":
+        add_student()
+    elif choice == "2":
+        view_students()
+    elif choice == "3" :
+        name = input("Enter student name: ")
+        search_student(name)  
+    elif choice == "4":
+     print("Thank you for using Student Management System.")
+     break
+    else :
+        print("Invalid choice. Please try again.")
