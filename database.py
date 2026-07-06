@@ -75,3 +75,17 @@ def search_student(name):
         print("Student not found.")
 
     connection.close()
+
+def update_student(student_id, age, course):
+        connection = sqlite3.connect("student.db")
+        cursor = connection.cursor()
+
+        sql = "UPDATE students SET age = ?, course = ? WHERE id = ?"
+
+        values =(age, course, student_id)
+
+        cursor.execute(sql,values)
+
+        connection.commit()
+        connection.close()  
+    
