@@ -1,4 +1,4 @@
-from database import insert_student, view_students, search_student, update_student
+from database import insert_student, view_students, search_student, update_student, delete_student
 
 
 def add_student():
@@ -19,7 +19,8 @@ def menu():
     print("2. View Students")
     print("3. Search Student")
     print("4. Update student")
-    print("5. Exit")
+    print("5. Delete student")
+    print("6. Exit")
 
 while True:
     menu()
@@ -37,8 +38,14 @@ while True:
         age = int(input("Enter New Age: "))
         course = input("Enter New Course: ")  
         update_student(student_id, age, course)
-        print("Student updated successfully!")   
+        print("Student updated successfully!") 
     elif choice == "5":
+        student_id = int(input("Enter id you want to delete"))  
+
+        delete_student(student_id)
+
+        print("Student deleted successfully!")
+    elif choice == "6":
      print("Thank you for using Student Management System.")
      break
     else :
