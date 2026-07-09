@@ -52,9 +52,11 @@ while True:
         except ValueError:
          print("Student ID and Age must be numbers.")
          continue
-        course = input("Enter New Course: ")  
+        course = input("Enter New Course: ") 
+        if course.strip() == "":
+            print("Course cannot be empty.")
+            continue 
         update_student(student_id, age, course)
-        print("Student updated successfully!") 
     elif choice == 5:
         try:
          student_id = int(input("Enter Student ID to delete: "))
@@ -63,8 +65,6 @@ while True:
          continue
 
         delete_student(student_id)
-
-        print("Student deleted successfully!")
     elif choice == 6:
      print("Thank you for using Student Management System.")
      break

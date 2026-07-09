@@ -77,17 +77,21 @@ def search_student(name):
     connection.close()
 
 def update_student(student_id, age, course):
-        connection = sqlite3.connect("student.db")
-        cursor = connection.cursor()
+    connection = sqlite3.connect("student.db")
+    cursor = connection.cursor()
 
-        sql = "UPDATE students SET age = ?, course = ? WHERE id = ?"
+    sql = "UPDATE students SET age = ?, course = ? WHERE id = ?"
 
-        values =(age, course, student_id)
+    values = (age, course, student_id)
 
-        cursor.execute(sql,values)
-
+    cursor.execute(sql,values)
+    if cursor.rowcount == 0:
+     print("No student found with that ID.")
+    else:
         connection.commit()
-        connection.close()  
+        print("Student updated successfully!") 
+
+    connection.close()  
 
 def delete_student(student_id):
     connection = sqlite3.connect("student.db")
@@ -96,6 +100,9 @@ def delete_student(student_id):
     sql = "DELETE FROM students WHERE id = ?"
     values = (student_id,)
     cursor.execute(sql,values)
-    
-    connection.commit()
+    if cursor.rowcount == 0:
+        print("No student found with that ID")
+    else:
+        connection.commit()
+        print("Student deleted successfully!")    
     connection.close()  
