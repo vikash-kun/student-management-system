@@ -127,3 +127,16 @@ def sort_students():
          print("No students found.")
 
     connection.close()
+
+def count_students():
+    connection = sqlite3.connect("student.db")
+    cursor = connection.cursor() 
+
+    cursor.execute("SELECT COUNT(*) FROM students;")
+
+    result = cursor.fetchone()
+
+    print("===== Student Statistics =====")
+    print("Total Students :", result[0])
+
+    connection.close()
