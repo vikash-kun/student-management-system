@@ -140,3 +140,26 @@ def count_students():
     print("Total Students :", result[0])
 
     connection.close()
+
+def search_by_age_course(age, course):
+    connection = sqlite3.connect("student.db")
+    cursor = connection.cursor() 
+
+    cursor.execute("SELECT * FROM students WHERE age = ? AND course = ?",
+                   (age, course))
+
+    students = cursor.fetchall()
+
+    if students:
+            for student in students:
+                student_id, name, age, course = student
+    
+                print(f"ID     : {student_id}")
+                print(f"Name   : {name}")
+                print(f"Age    : {age}")
+                print(f"Course : {course}")
+                print("-" * 30)
+    else:
+            print("No students found.")
+    
+    connection.close()
