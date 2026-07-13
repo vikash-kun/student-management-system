@@ -1,4 +1,4 @@
-from database import insert_student, view_students,search_student, update_student, delete_student,sort_students,count_students,search_by_age_course
+from database import insert_student, view_students,search_student, update_student, delete_student,sort_students,count_students,search_by_age_course,search_by_age_or_course
 
 
 def add_student():
@@ -32,7 +32,8 @@ def menu():
     print("6. Sort Students by Age")
     print("7. Count Students")
     print("8. Search by Age and Course")
-    print("9. Exit")
+    print("9. Search by Age OR Course")
+    print("10. Exit")
 
 while True:
     menu()
@@ -84,7 +85,19 @@ while True:
         print("Course cannot be empty.")
         continue
        search_by_age_course(age, course)
+
     elif choice == 9:
+        try:
+         age = int(input("Enter age : "))
+        except ValueError: 
+         print("Student Age must be a number.")
+         continue
+        course = input("Enter course : ")
+        if course.strip() == "":
+         print("Course cannot be empty.")
+         continue
+        search_by_age_or_course(age, course)
+    elif choice == 10:
      print("Thank you for using Student Management System.")
      break
     else :
