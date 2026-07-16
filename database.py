@@ -218,3 +218,16 @@ def average_age():
     print("Average Age :",result[0] )    
 
     connection.close()       
+
+def maximum_age():
+    connection = sqlite3.connect("student.db")
+    cursor = connection.cursor()                
+    cursor.execute("SELECT MAX(age) FROM students;")
+
+    result = cursor.fetchone()
+
+    print("===== Student Statistics =====")
+    print("Maximum age:",result[0] )  
+
+    connection.close()   
+   
