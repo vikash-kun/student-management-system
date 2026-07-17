@@ -230,4 +230,17 @@ def maximum_age():
     print("Maximum age:",result[0] )  
 
     connection.close()   
-   
+
+def minimum_age():
+    connection = sqlite3.connect("student.db")
+    cursor = connection.cursor()    
+
+    cursor.execute("SELECT MIN(age) FROM students;")
+
+    result = cursor.fetchone()
+
+    print("===== Student Statistics =====")
+    print("Minimun age:",result[0] )  
+
+    connection.close()   
+
