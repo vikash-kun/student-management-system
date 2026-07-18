@@ -244,3 +244,15 @@ def minimum_age():
 
     connection.close()   
 
+def total_age():
+    connection = sqlite3.connect("student.db")
+    cursor = connection.cursor()   
+
+    cursor.execute("SELECT SUM(age) FROM students;")
+
+    result = cursor.fetchone()
+
+    print("===== Student Statistics =====")
+    print("Total age:",result[0] )  
+
+    connection.close()  

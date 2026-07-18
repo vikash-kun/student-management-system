@@ -1,4 +1,4 @@
-from database import insert_student, view_students,search_student, update_student, delete_student,sort_students,count_students,search_by_age_course,search_by_age_or_course,search_student_partial,average_age, maximum_age,minimum_age
+from database import insert_student, view_students,search_student, update_student, delete_student,sort_students,count_students,search_by_age_course,search_by_age_or_course,search_student_partial,average_age, maximum_age,minimum_age,total_age
 
 
 def add_student():
@@ -37,7 +37,8 @@ def menu():
     print("11. Average Age")
     print("12. Maximum Age")
     print("13. Minimum Age")
-    print("14. Exit")
+    print("14. Total Age")
+    print("15. Exit")
 
 while True:
     menu()
@@ -109,8 +110,10 @@ while True:
     elif choice == 12:
        maximum_age()
     elif choice == 13:
-        minimum_age()    
+        minimum_age()
     elif choice == 14:
+      total_age()        
+    elif choice == 15:
      print("Thank you for using Student Management System.")
      break
     else :
