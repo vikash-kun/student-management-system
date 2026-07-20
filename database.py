@@ -256,3 +256,17 @@ def total_age():
     print("Total age:",result[0] )  
 
     connection.close()  
+
+def unique_courses():
+    connection = sqlite3.connect("student.db")
+    cursor = connection.cursor()      
+
+    cursor.execute("SELECT DISTINCT course FROM students;")
+
+    courses = cursor.fetchall()
+
+    print("===== Available Courses =====")
+    for course in courses:
+        print(f"Course : {course[0]}") 
+    connection.close()   
+
