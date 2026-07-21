@@ -270,3 +270,17 @@ def unique_courses():
         print(f"Course : {course[0]}") 
     connection.close()   
 
+def students_by_course():
+    connection = sqlite3.connect("student.db")
+    cursor = connection.cursor()   
+
+    cursor.execute("SELECT course, COUNT(*) FROM students GROUP BY course;") 
+
+    result = cursor.fetchall()
+
+    print("===== Students by Course =====")
+
+    for row in result:
+         print(f"{row[0]:30} : {row[1]}")
+
+    connection.close()     
