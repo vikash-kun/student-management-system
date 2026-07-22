@@ -283,4 +283,16 @@ def students_by_course():
     for row in result:
          print(f"{row[0]:30} : {row[1]}")
 
-    connection.close()     
+    connection.close() 
+def popular_courses():
+    connection = sqlite3.connect("student.db")
+    cursor = connection.cursor()   
+
+    cursor.execute("SELECT course, COUNT(*) FROM students GROUP BY course HAVING COUNT(*) >= 2;")      
+    result = cursor.fetchall()
+
+    print("====== Popular Courses ======")
+
+    for row in result:
+             print(f"{row[0]:30} : {row[1]}")
+    connection.close()          
