@@ -306,7 +306,7 @@ def oldest_students(limit):
 )
 
     students = cursor.fetchall()
-    print("===== Top 3 Oldest Students =====")
+    print("===== Top {limit} Oldest Students =====")
     if students:
      for student in students:
              student_id, name, age, course = student
