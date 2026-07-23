@@ -1,4 +1,4 @@
-from database import insert_student, view_students,search_student, update_student, delete_student,sort_students,count_students,search_by_age_course,search_by_age_or_course,search_student_partial,average_age, maximum_age,minimum_age,total_age,unique_courses,students_by_course,popular_courses
+from database import insert_student, view_students,search_student, update_student, delete_student,sort_students,count_students,search_by_age_course,search_by_age_or_course,search_student_partial,average_age, maximum_age,minimum_age,total_age,unique_courses,students_by_course,popular_courses,oldest_students
 
 
 def add_student():
@@ -40,7 +40,8 @@ def menu():
     print("14. Show Available Courses")
     print("15. Students by Course")
     print("16. Popular Courses")
-    print("17. Exit")
+    print("17. Top N Oldest Students")
+    print("18. Exit")
 
 while True:
     menu()
@@ -120,6 +121,13 @@ while True:
     elif choice == 16:
         popular_courses()
     elif choice == 17:
+     try:
+         limit = int(input("How many oldest students do you want to see? "))
+     except ValueError:
+      print("Please enter a valid number.")
+      continue
+     oldest_students(limit)
+    elif choice == 18:
      print("Thank you for using Student Management System.")
      break
     else :

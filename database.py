@@ -295,4 +295,27 @@ def popular_courses():
 
     for row in result:
              print(f"{row[0]:30} : {row[1]}")
-    connection.close()          
+    connection.close()   
+
+def oldest_students(limit):
+    connection = sqlite3.connect("student.db")
+    cursor = connection.cursor()        
+
+    cursor.execute( "SELECT * FROM students ORDER BY age DESC LIMIT ?",
+    (limit,)
+)
+
+    students = cursor.fetchall()
+    print("===== Top 3 Oldest Students =====")
+    if students:
+     for student in students:
+             student_id, name, age, course = student
+             print(f"ID     : {student_id}")
+             print(f"Name   : {name}")
+             print(f"Age    : {age}")
+             print(f"Course : {course}") 
+             print("-" * 30)
+    else:
+        print("No students found.")
+    connection.close()   
+       
