@@ -1,4 +1,4 @@
-from database import insert_student, view_students,search_student, update_student, delete_student,sort_students,count_students,search_by_age_course,search_by_age_or_course,search_student_partial,average_age, maximum_age,minimum_age,total_age,unique_courses,students_by_course,popular_courses,oldest_students
+from database import insert_student, view_students,search_student, update_student, delete_student,sort_students,count_students,search_by_age_course,search_by_age_or_course,search_student_partial,average_age, maximum_age,minimum_age,total_age,unique_courses,students_by_course,popular_courses,oldest_students,show_students_page
 
 
 def add_student():
@@ -41,7 +41,8 @@ def menu():
     print("15. Students by Course")
     print("16. Popular Courses")
     print("17. Top N Oldest Students")
-    print("18. Exit")
+    print("18. Show Students (Pagination)")
+    print("19. Exit")
 
 while True:
     menu()
@@ -126,9 +127,15 @@ while True:
      except ValueError:
         print("Please enter a valid number.")
         continue
-
      oldest_students(limit)
     elif choice == 18:
+     limit = int(input("How many students per page? "))
+     page = int(input("Which page number? "))
+
+     offset = (page - 1) * limit
+     show_students_page(limit, offset)
+     
+    elif choice == 19:
      print("Thank you for using Student Management System.")
      break
     else :

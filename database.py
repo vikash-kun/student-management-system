@@ -318,4 +318,24 @@ def oldest_students(limit):
     else:
         print("No students found.")
     connection.close()   
-       
+def show_students_page(limit, offset):
+    connection = sqlite3.connect("student.db")
+    cursor = connection.cursor()   
+
+    cursor.execute("SELECT * FROM students LIMIT ? OFFSET ?", (limit, offset))     
+
+    students = cursor.fetchall()
+    print(f"===== Students (Page {(offset // limit) + 1}) =====")
+    if students:
+     
+     for student in students:
+             student_id, name, age, course = student
+             print(f"ID     : {student_id}")
+             print(f"Name   : {name}")
+             print(f"Age    : {age}")
+             print(f"Course : {course}") 
+             print("-" * 30)
+    else:
+        print("No students found.")
+
+    connection.close()    
